@@ -15,7 +15,7 @@ final class WishController extends AbstractController
     public function list(): Response
     {
 
-        //TODO renvoyer la liste
+        // renvoyer la liste
         return $this->render('wish/list.html.twig');
     }
     #[Route('/{id}', name: '_list_details', requirements: ['id' => '\d+'])]
@@ -23,14 +23,14 @@ final class WishController extends AbstractController
     {
 
         dump($id);
-        //TODO renvoyer le détail d'une liste
+        // renvoyer le détail d'une liste
         return $this->render('wish/details.html.twig');
     }
 
     #[Route('/create', name: '_create', methods: ['POST','GET'])]
     public function create(): Response
     {
-        //TODO création d'un formulaire de création
+        // création d'un formulaire de création
         return $this->render('wish/create.html.twig');
 
     }
