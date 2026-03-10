@@ -1,6 +1,22 @@
-// assets/js/components/slideshow.js
 export function initSlideshow() {
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function() {
+            setupSlideshow();
+        });
+    } else {
+        // DOM déjà chargé, exécuter directement
+        setupSlideshow();
+    }
+}
+
+function setupSlideshow() {
     let slideIndex = 1;
+
+    // Vérifier que les éléments existent
+    const slides = document.getElementsByClassName("mySlides");
+    if (slides.length === 0) return; // Sortir si pas de diapositives
+
     showSlides(slideIndex);
 
     function plusSlides(n) {
@@ -25,14 +41,10 @@ export function initSlideshow() {
         slides[slideIndex-1].style.display = "block";
     }
 
-    // Rendre les fonctions disponibles globalement pour les attributs onclick
+
     window.plusSlides = plusSlides;
     window.currentSlide = currentSlide;
 }
 
-// Alternative: auto-initialisation si le DOM est chargé
-if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initSlideshow);
-} else {
-    initSlideshow();
-}
+
+initSlideshow();

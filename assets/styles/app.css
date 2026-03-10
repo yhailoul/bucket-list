@@ -49,6 +49,9 @@ main{
 .mySlides {
     display: none;
 }
+.mySlides:first-child {
+    display: block;
+}
 
 .mySlides img {
     width: 100%;
