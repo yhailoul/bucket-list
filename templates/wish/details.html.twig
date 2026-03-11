@@ -1,6 +1,18 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>Wish details : title according to the detail</h2>
+<h2>Wish details : {{ wish.title }}</h2>
+    <p>date de création: {{ wish.dateCreated | date('d/m/Y H:i:s') }}</p>
+    <p>date de modification: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
+    <p>auteur: {{ wish.author }}</p>
+    <p>état de publication:
+        {%if wish.published === 0 %}
+        <span>non publié</span>
+        {% else  %}
+        <span>publié</span>
+        {% endif %}
+    </p>
+    <p>description: {{ wish.description }}</p>
+
 {% endblock %}
 

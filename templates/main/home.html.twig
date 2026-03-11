@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    {% set bucketList = ["bunjee jumping","living in Peking, China","horse riding and caravan cruise in Kazakhstan","Hozier's concert","sandboarding","underwater restaurant","visiting Vietnam","visit Turkey'most famous baklava shop","be invited to a big Indian wedding","Visit Egypt", "See northern lights"]  %}
-    {% set imgBucketList=["bungeeJumping","china","horseridingKazakhstan","hozier","sandboarding","underwaterRestaurant","vietnam","baklava","indianWedding","egypt","northernLights"] %}
+    {% set bucketList = ["bunjee jumping","living in Peking, China","horse riding and caravan cruise in Kazakhstan","Hozier's concert","sandboarding","underwater restaurant","visiting Vietnam","visit Turkey's most famous baklava shop","be invited to a big Indian wedding","Visit Egypt", "See northern lights","finish writing my book"]  %}
+    {% set imgBucketList=["bungeeJumping","china","horseridingKazakhstan","hozier","sandboarding","underwaterRestaurant","vietnam","baklava","indianWedding","egypt","northernLights","bookwriting"] %}
 
     <h2>List of things on my bucket list</h2>
     <div class="slideshow-container">
@@ -10,7 +10,7 @@
         <div class="mySlides">
             <div class="numbertext">{{loop.index}}</div>
             <img src="{{ asset('images/'~ img ~'.jpg')}}" alt="{{ img }}">
-            <div class="text"></div>
+            <div class="text">{{ bucketList[loop.index0] }}</div>
         </div>
 
         {%endfor%}
@@ -19,6 +19,7 @@
         <a class="prev" onclick="plusSlides(-1)">&#10094;</a>
         <a class="next" onclick="plusSlides(1)">&#10095;</a>
     </div>
+    <br>
 
     {% for things in bucketList%}
         <div>{{ loop.index }}: <span>{{ things }}</span></div>
