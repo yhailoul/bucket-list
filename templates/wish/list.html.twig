@@ -1,15 +1,30 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
+    <div class="content">
+        <h2>Wish List</h2>
+        <section>
+            {% for wish in wishList %}
+                <article>
+                    <a href="{{ path('wish_list_details',{'id':wish.id}) }}"><p>{{ loop.index }} : {{ wish.title }}</p></a>
+                </article>
+            {% endfor %}
+        </section>
+    </div>
 
-    <h2>Wish List</h2>
-    <section>
-        {% for wish in wishList %}
-        <article>
-            <a href="{{ path('wish_list_details',{'id':wish.id}) }}"><p>{{ loop.index }} : {{ wish.title }}</p></a>
-        </article>
-        {% endfor %}
-    </section>
 
 {% endblock %}
+{% block extrastyle %}
+    <style>
+        body{
 
+            background-image: url('{{ asset('images/7023263.jpg') }}'), linear-gradient(rgba(255, 255, 255, 08), rgba(255, 255, 255, 0.6)) ;
+        }
+        footer{
+            margin-top: 10vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+            border-radius: 4px;
+            padding:4px;
+        }
+    </style>
+{% endblock %}

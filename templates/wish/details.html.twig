@@ -1,18 +1,48 @@
 {% extends 'base.html.twig' %}
 
 {% block body %}
-<h2>Wish details : {{ wish.title }}</h2>
-    <p>date de création: {{ wish.dateCreated | date('d/m/Y H:i:s') }}</p>
-    <p>date de modification: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
-    <p>auteur: {{ wish.author }}</p>
-    <p>état de publication:
-        {%if wish.published === 0 %}
-        <span>non publié</span>
-        {% else  %}
-        <span>publié</span>
-        {% endif %}
-    </p>
-    <p>description: {{ wish.description }}</p>
+    <div class="content">
+
+
+        <h2>Wish details : {{ wish.title }}</h2>
+        <p>date de création: {{ wish.dateCreated | date('d/m/Y H:i:s') }}</p>
+        {% if wish.dateUpdated !== null %}
+            <p>date de modification: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
+        {%endif %}
+        <p>auteur: {{ wish.author }}</p>
+        <p>état de publication:
+            {%if wish.published === 0 %}
+                <span>non publié</span>
+            {% else  %}
+                <span>publié</span>
+            {% endif %}
+        </p>
+        <p>description: {{ wish.description }}</p>
+        <br>
+        <div class="buttons">
+            <button class="removeButton">
+                <a  href="{{ path('wish_update',{ 'id': wish.id}) }}">Update your wish</a>
+            </button>
+            <button class="removeButton" type="submit" onclick="return confirm('are you sure you want to remove your dream?') ">Remove your wish</button>
+
+        </div>
+
+    </div>
+
 
 {% endblock %}
 
+{% block extrastyle %}
+    <style>
+        body{
+
+            background-image: url('{{ asset('images/7023263.jpg') }}'), linear-gradient(rgba(255, 255, 255, 08), rgba(255, 255, 255, 0.6)) ;
+        }
+        footer{
+            margin-top: 10vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+            border-radius: 4px;
+            padding:4px;
+        }
+    </style>
+{% endblock %}

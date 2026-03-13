@@ -1,21 +1,55 @@
 body{
-    background-color: blanchedalmond;
     background-attachment: fixed;
     background-size: cover ;
     background-position: center center;
     font-family: "Oxygen", sans-serif;
 }
-h1, h2{
+h1, h2, h3{
         font-family: "Homemade Apple", cursive;
         font-weight: 400;
         font-style: normal;
 }
-.title{
-    display:flex;
-    justify-content:left;
+h2{
+    font-family: "Homemade Apple", cursive;
+    margin-top: 150px;
+    text-align: center;
 }
-.logo{
+.content{
+    background-color: rgba(255, 255, 255, 0.8);
+    max-width: 70%;
+    margin-right: auto;
+    margin-left: auto;
+    padding-right: 10vw;
+    padding-left: 10vw;
+    padding-bottom: 15vh;
+}
+.headerTitle{
+    border-radius: 10px;
+    background-color: rgb(188, 217, 223, 0.8);
+    top: 0;
+    width: 100%;
+    display:flex;
+    justify-content: space-between;
+
+
+}
+.title {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
     height: 100px;
+    width: auto;
+}
+
+h1 {
+    margin: 0;
+}
+.navbarMenu{
+    margin-top: 20px;
+    justify-content: right;
 }
 a{
     color: inherit;
@@ -100,4 +134,60 @@ main{
 @keyframes fade {
     from {opacity: .4}
     to {opacity: 1}
+}
+.flash {
+    padding: 20px;
+    font-weight: bold;
+    font-size: 1.4rem;
+    margin: 1rem 0;
+    border-radius: 5px;
+    color: #132135;
+}
+
+.flash-success {
+    background-color: lightblue;
+    color:cornflowerblue;
+    font-family: "Homemade Apple", serif;
+}
+.form-error{
+    color: red;
+}
+.removeButton {
+    appearance: none;
+    border-color: #bcd9df;
+    background-color: #a2c7cf;
+    border-radius: 5px;
+    font-size: inherit;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+}
+button{
+    appearance: none;
+    border-color: #bcd9df;
+    background-color: #a2c7cf;
+    border-radius: 5px;
+    font-size: inherit;
+}
+
+label{
+    font-size: 1.2em;
+    font-weight: lighter;
+}
+input{
+    margin-bottom: 5vh;
+    height:5vh;
+    justify-content: right;
+    margin-right: 1vw;
+}
+textarea{
+    margin-bottom: 5vh;
+    height:5vh;
+    justify-content: right;
+}
+form div{
+    display: flex;
+    flex-direction: column;
 }
