@@ -1,0 +1,24 @@
+{% extends 'base.html.twig' %}
+
+{% block extrastyle %}
+
+{% endblock %}
+
+{% block body %}
+
+    <div class="content">
+        <h2>Wishes in categories</h2>
+        <section>
+            {% for category in categories %}
+                <article>
+                    <a href="{{ path('wish_categories_wishes', {'id':category.id}) }}">
+                        <h4>{{ category.name }}</h4>
+                    </a>
+
+                </article>
+            {% endfor %}
+        </section>
+    </div>
+
+{% endblock %}
+

@@ -6,7 +6,7 @@
         <section>
             {% for wish in wishList %}
                 <article>
-                    <a href="{{ path('wish_list_details',{'id':wish.id}) }}"><p>{{ loop.index }} : {{ wish.title }}</p></a>
+                    <a href="{{ path('wish_list_details',{'id':wish.id}) }}"><p>{{ loop.index }} : {{ wish.title }} ({{ wish.category.name}})</p></a>
                 </article>
             {% endfor %}
         </section>

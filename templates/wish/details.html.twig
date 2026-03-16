@@ -5,19 +5,20 @@
 
 
         <h2>Wish details : {{ wish.title }}</h2>
-        <p>date de création: {{ wish.dateCreated | date('d/m/Y H:i:s') }}</p>
+        <p>Creation date: {{ wish.dateCreated | date('d/m/Y H:i:s') }}</p>
         {% if wish.dateUpdated !== null %}
-            <p>date de modification: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
+        <p>Update date: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
         {%endif %}
-        <p>auteur: {{ wish.author }}</p>
-        <p>état de publication:
+        <p>Author: {{ wish.author }}</p>
+        <p>Publication state:
             {%if wish.published === 0 %}
-                <span>non publié</span>
+                <span>not published</span>
             {% else  %}
-                <span>publié</span>
+                <span>published</span>
             {% endif %}
         </p>
-        <p>description: {{ wish.description }}</p>
+        <p>Description: {{ wish.description }}</p>
+        <p>Category: {{ category.name }}</p>
         <br>
         <div class="buttons">
             <button class="removeButton">

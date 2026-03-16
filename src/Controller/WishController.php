@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\Wish;
 use App\Form\WishType;
+use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -15,6 +16,21 @@ use Symfony\Component\Routing\Attribute\Route;
 final class WishController extends AbstractController
 {
 
+    #[Route('/categories', name: '_categories')]
+    public function categories(CategoryRepository $categoryRepository): Response
+    {
+        $categories = $categoryRepository->findAll();
+
+        return $this->render('wish/wishesInCategory.html.twig',['categories' => $categories,]);
+    }
+    #[Route('/categories/{id}/wishes', name: '_categories_wishes', requirements: ['id' => '\d+'])]
+    public function wishesInCategories(CategoryRepository $categoryRepository, int $id): Response
+    {
+        $category = $categoryRepository->find($id);
+        $wishes = $category->getWishes();
+
+        return $this->render('wish/wishesPerCategory.html.twig',['category' => $category,'wishes' => $wishes, 'id'=>$id]);
+    }
 
     #[Route('/list', name: '_list')]
     public function list(WishRepository $wishRepository): Response
@@ -28,7 +44,7 @@ final class WishController extends AbstractController
         $wish= $wishRepository->findOneBy(['id'=>$id]);
 
 
-        return $this->render('wish/details.html.twig',['wish' => $wish]);
+        return $this->render('wish/details.html.twig',['wish' => $wish, 'category' =>$wish->getCategory()], );
     }
     #[Route('/remove/{id}', name: '_remove', requirements: ['id' => '\d+'])]
     public function remove(int $id, WishRepository $wishRepository, EntityManagerInterface $manager): Response
@@ -75,6 +91,6 @@ final class WishController extends AbstractController
             return $this->redirectToRoute('wish_list_details',['id'=>$wish->getId()]);
         }
         return $this->render('wish/update.html.twig',['wishForm'=>$wishForm]);
-
     }
+
 }

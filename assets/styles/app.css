@@ -177,17 +177,28 @@ label{
     font-weight: lighter;
 }
 input{
+    font-family: "Oxygen", sans-serif;
     margin-bottom: 5vh;
     height:5vh;
     justify-content: right;
     margin-right: 1vw;
+    font-size: 1em;
 }
 textarea{
+    font-family: "Oxygen", sans-serif;
     margin-bottom: 5vh;
     height:5vh;
     justify-content: right;
+    font-size: 1em;
 }
 form div{
     display: flex;
     flex-direction: column;
+}
+select{
+    font-family: "Oxygen", sans-serif;
+    margin-bottom: 5vh;
+    height:5vh;
+    justify-content: right;
+    font-size: 1em;
 }
