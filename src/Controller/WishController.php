@@ -49,7 +49,11 @@ final class WishController extends AbstractController
     #[Route('/remove/{id}', name: '_remove', requirements: ['id' => '\d+'])]
     public function remove(int $id, WishRepository $wishRepository, EntityManagerInterface $manager): Response
     {
+
         $wish= $wishRepository->find($id);
+        if($wish->getUser() !=$this->getUser() && !$this->isGranted('ROLE_ADMIN')){
+            throw $this->createAccessDeniedException("You are not authorized to access this page");
+        }
 
             $manager->remove($wish);
             $manager->flush();
@@ -80,7 +84,11 @@ final class WishController extends AbstractController
     #[Route('/update/{id}', name: '_update', methods: ['POST','GET'])]
     public function update(int $id, WishRepository $repository,EntityManagerInterface $manager, Request $request,): Response
     {
+
         $wish= $repository->find($id);
+        if($wish->getUser()!= $this->getUser()){
+            throw $this->createAccessDeniedException("You are not authorized to access this page");
+        }
         $wish->setDateUpdated(new \DateTime());
         $wishForm = $this->createForm(WishType::class, $wish);
         $wishForm->handleRequest($request);

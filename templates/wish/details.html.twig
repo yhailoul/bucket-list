@@ -20,24 +20,19 @@
         <p>Category: {{ category.name }}</p>
         <br>
         {% if app.user %}
+            {%if app.user== wish.user %}
         <div class="buttons">
             <button class="removeButton">
                 <a  href="{{ path('wish_update',{ 'id': wish.id}) }}">Update your wish</a>
             </button>
-            <button class="removeButton" type="submit" onclick="return confirm('are you sure you want to remove your dream?') ">Remove your wish</button>
-        </div>
-        {%if is_granted("ROLE_ADMIN") %}
-        <div class="buttons">
-            <button class="removeButton">
-                <a  href="{{ path('wish_update',{ 'id': wish.id}) }}">Update your wish</a>
-            </button>
-            <button class="removeButton" type="submit" onclick="return confirm('are you sure you want to remove your dream?') ">Remove your wish</button>
+            {% endif %}
+            {% if app.user==wish.user or is_granted('ROLE_ADMIN') %}
+                <button class="removeButton" type="submit" onclick="return confirm('are you sure you want to remove your dream?') ">Remove your wish</button>
         </div>
         {%endif %}
         {%endif %}
 
     </div>
-
 
 {% endblock %}
 
