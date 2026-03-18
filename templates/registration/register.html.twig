@@ -1,21 +1,25 @@
 {% extends 'base.html.twig' %}
 
+{% block title %}Register{% endblock %}
+
 {% block body %}
     <div class="content">
-        <h2>Wish List</h2>
-        <section>
-            {% for wish in wishList %}
-                <article>
-                    <a href="{{ path('wish_list_details',{'id':wish.id}) }}">
-                        <p>{{ loop.index }} : {{ wish.title }} ({{ wish.category.name}})</p>
-                    </a>
-                </article>
-            {% endfor %}
-        </section>
+    <h2>Register</h2>
+
+    {{ form_errors(registrationForm) }}
+
+    {{ form_start(registrationForm) }}
+        {{ form_row(registrationForm.pseudo) }}
+        {{ form_row(registrationForm.email) }}
+        {{ form_row(registrationForm.plainPassword, {
+            label: 'Password'
+        }) }}
+
+        <button type="submit" class="btn">Register</button>
+    {{ form_end(registrationForm) }}
     </div>
-
-
 {% endblock %}
+
 {% block extrastyle %}
     <style>
         body{
@@ -28,5 +32,6 @@
             border-radius: 4px;
             padding:4px;
         }
+
     </style>
 {% endblock %}

@@ -3,13 +3,12 @@
 {% block body %}
     <div class="content">
 
-
         <h2>Wish details : {{ wish.title }}</h2>
         <p>Creation date: {{ wish.dateCreated | date('d/m/Y H:i:s') }}</p>
         {% if wish.dateUpdated !== null %}
         <p>Update date: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
         {%endif %}
-        <p>Author: {{ wish.author }}</p>
+        <p>Author: {{ app.user.pseudo }}</p>
         <p>Publication state:
             {%if wish.published === 0 %}
                 <span>not published</span>
@@ -20,13 +19,22 @@
         <p>Description: {{ wish.description }}</p>
         <p>Category: {{ category.name }}</p>
         <br>
+        {% if app.user %}
         <div class="buttons">
             <button class="removeButton">
                 <a  href="{{ path('wish_update',{ 'id': wish.id}) }}">Update your wish</a>
             </button>
             <button class="removeButton" type="submit" onclick="return confirm('are you sure you want to remove your dream?') ">Remove your wish</button>
-
         </div>
+        {%if is_granted("ROLE_ADMIN") %}
+        <div class="buttons">
+            <button class="removeButton">
+                <a  href="{{ path('wish_update',{ 'id': wish.id}) }}">Update your wish</a>
+            </button>
+            <button class="removeButton" type="submit" onclick="return confirm('are you sure you want to remove your dream?') ">Remove your wish</button>
+        </div>
+        {%endif %}
+        {%endif %}
 
     </div>
 

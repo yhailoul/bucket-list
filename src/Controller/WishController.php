@@ -57,10 +57,11 @@ final class WishController extends AbstractController
         return $this->redirectToRoute('wish_list');
     }
 
-    #[Route('/create', name: '_create', methods: ['POST','GET'])]
+    #[Route('/create', name: '_create', methods: ['POST','GET'], )]
     public function create(EntityManagerInterface $manager, Request $request,): Response
     {
         $wish= new Wish();
+        $wish->setUser($this->getUser());
         $wish->setIsPublished(true);
         $wish->setDateCreated(new \DateTime());
         $wish->setDateUpdated(null);
