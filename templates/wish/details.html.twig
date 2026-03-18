@@ -8,7 +8,7 @@
         {% if wish.dateUpdated !== null %}
         <p>Update date: {{ wish.dateUpdated | date('d/m/Y H:i:s') }}</p>
         {%endif %}
-        <p>Author: {{ app.user.pseudo }}</p>
+        <p>Author: {{ wish.user.pseudo }}</p>
         <p>Publication state:
             {%if wish.published === 0 %}
                 <span>not published</span>
