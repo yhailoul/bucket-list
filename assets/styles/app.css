@@ -166,10 +166,12 @@ main{
 }
 button{
     appearance: none;
-    border-color: #bcd9df;
-    background-color: #a2c7cf;
+    border-color: #a2c7cf;
+    background-color: #bcd9df;
     border-radius: 5px;
     font-size: inherit;
+    height: 5vh;
+    text-align: center;
 }
 
 label{
@@ -202,3 +204,44 @@ select{
     justify-content: right;
     font-size: 1em;
 }
+label > input[type="checkbox"] {
+    height: 2vh;
+    width: 2vw;
+    accent-color: #a2c7cf;
+}
+.infos{
+    background-color: rgba(162, 199, 207, 0.5);
+    margin-bottom: 5vh;
+    border-radius: 10px;
+}
+.infos :first-child{
+    margin-top: 5vh;
+}
+.infos:hover{
+    background-color: rgba(162, 199, 207, 0.8);
+}
+.infos-title{
+    padding: 20px;
+}
+.infos-img-descript{
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+}
+.searchEvents{
+    appearance: none;
+    background-color: rgba(162, 199, 207, 0.5);
+    border-radius: 5px;
+    font-size: inherit;
+    height: 2vh;
+    padding: 5px;
+}
+.searchEvents:hover{
+    background-color: rgba(162, 199, 207, 0.8);
+}
+.event-bar{
+    display: flex;
+    justify-content: space-between;
+}
+
+

@@ -53,11 +53,12 @@ final class WishController extends AbstractController
         $wish= $wishRepository->find($id);
         if($wish->getUser() !=$this->getUser() && !$this->isGranted('ROLE_ADMIN')){
             throw $this->createAccessDeniedException("You are not authorized to access this page");
+        } else{ $manager->remove($wish);
+            $manager->flush();
+            $this->addFlash('success', 'Wish has been successfully removed');
         }
 
-            $manager->remove($wish);
-            $manager->flush();
-        $this->addFlash('success', 'Wish has been successfully removed');
+
         return $this->redirectToRoute('wish_list');
     }
 
@@ -96,7 +97,7 @@ final class WishController extends AbstractController
 
             $manager->persist($wish);
             $manager->flush();
-            $this->addFlash('success', 'Your wish has been successfully created');
+            $this->addFlash('success', 'Your wish has been successfully updated');
             return $this->redirectToRoute('wish_list_details',['id'=>$wish->getId()]);
         }
         return $this->render('wish/update.html.twig',['wishForm'=>$wishForm]);

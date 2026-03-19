@@ -1,0 +1,49 @@
+{% extends 'base.html.twig' %}
+{% block title %}Events{% endblock %}
+{% block body %}
+
+    <div class="content">
+        <h2>Events</h2>
+        <p>Look up all the events in your area !</p>
+        {{ form_start(eventForm) }}
+        {{ form_widget(eventForm) }}
+        <br>
+        <button >Find Events!</button>
+        {{ form_end(eventForm) }}
+        <br>
+
+        <div class="event"></div>
+        {% for event in data.records %}
+            <div class="infos">
+                <div class="infos-title">
+                    <h4>{{ event.fields.title_fr }}</h4>
+                    <p>dates of the event : {{ event.fields.daterange_fr }}</p>
+                    <p>Location: {{ event.fields.location_name }}</p>
+                    <p>Address: {{ event.fields.location_address }}</p>
+                </div>
+                <div class="infos-img-descript">
+                    {% if event.fields.thumbnail is defined %}
+                    <img src="{{ event.fields.thumbnail }}" alt="event thumbnail: {{event.fields.title_fr }}">
+                    {% endif %}
+                    <p>{{ event.fields.description_fr }}</p>
+                </div>
+            </div>
+        {% endfor %}
+
+    </div>
+{% endblock %}
+{% block extrastyle %}
+    <style>
+        body{
+
+            background-image: url('{{ asset('images/7023263.jpg') }}'), linear-gradient(rgba(255, 255, 255, 08), rgba(255, 255, 255, 0.6)) ;
+        }
+        footer{
+            margin-top: 10vh;
+            background: linear-gradient(rgba(255, 255, 255, 0.6), rgba(255, 255, 255, 0.6));
+            border-radius: 4px;
+            padding:4px;
+        }
+    </style>
+{% endblock %}
+
