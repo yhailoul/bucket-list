@@ -19,25 +19,32 @@ class WishRepository extends ServiceEntityRepository
     //    /**
     //     * @return Wish[] Returns an array of Wish objects
     //     */
-    //    public function findByExampleField($value): array
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->orderBy('w.id', 'ASC')
-    //            ->setMaxResults(10)
-    //            ->getQuery()
-    //            ->getResult()
-    //        ;
-    //    }
+    //
 
-    //    public function findOneBySomeField($value): ?Wish
-    //    {
-    //        return $this->createQueryBuilder('w')
-    //            ->andWhere('w.exampleField = :val')
-    //            ->setParameter('val', $value)
-    //            ->getQuery()
-    //            ->getOneOrNullResult()
-    //        ;
-    //    }
+        public function findByCategory(string $category)
+        {
+            return $this->createQueryBuilder('w')
+                ->leftJoin('w.category','c' )
+                ->addSelect('c')
+                ->where('c.name = :c_name')
+                ->setParameter('c_name',$category)
+                ->getQuery()
+                ->getResult();
+        }
+    public function findByDateASC()
+    {
+        return $this->createQueryBuilder('w')
+            ->addSelect('w')
+            ->orderBy('w.dateCreated', 'ASC')
+            ->getQuery()
+            ;
+    }
+    public function findByDateDESC()
+    {
+        return $this->createQueryBuilder('w')
+            ->addSelect('w')
+            ->orderBy('w.dateCreated', 'DESC')
+            ->getQuery()
+            ;
+    }
 }

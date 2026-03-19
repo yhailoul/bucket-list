@@ -3,6 +3,7 @@
 namespace App\Controller;
 
 use App\Entity\Wish;
+use App\Form\ListSortingType;
 use App\Form\WishType;
 use App\Repository\CategoryRepository;
 use App\Repository\WishRepository;
@@ -33,10 +34,31 @@ final class WishController extends AbstractController
     }
 
     #[Route('/list', name: '_list')]
-    public function list(WishRepository $wishRepository): Response
+    public function list(WishRepository $wishRepository, Request $request): Response
     {
-        $wishes = $wishRepository->findAll();
-        return $this->render('wish/list.html.twig',['wishList' => $wishes]);
+        $categoryFilterForm = $this->createForm(ListSortingType::class);
+        $categoryFilterForm->handleRequest($request);
+        $selectedCategory =null;
+        $wishes=[];
+        $allWishes = $wishRepository->findAll();
+        if($categoryFilterForm->isSubmitted()){
+            $formData = $categoryFilterForm->getData();
+            if(!empty($formData['category'])){
+                $selectedCategory = $formData['category'];
+                dump('Catégorie sélectionnée dans le formulaire: ' . $selectedCategory);
+            }
+            if($selectedCategory==null) {
+                $wishes = $allWishes;
+            }else {
+                $wishes=$wishRepository->findByCategory($selectedCategory);
+            }
+            dump('Nombre de wishes trouvés: ' . count($wishes));
+        }
+        return $this->render('wish/list.html.twig', [
+            'wishList' => $allWishes,
+            'wishes'=>$wishes,
+            'selectedCategory'=>$selectedCategory,
+            'filterForm'=>$categoryFilterForm]);
     }
     #[Route('/list/{id}', name: '_list_details', requirements: ['id' => '\d+'])]
     public function details(int $id, WishRepository $wishRepository): Response

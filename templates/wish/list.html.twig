@@ -3,14 +3,30 @@
 {% block body %}
     <div class="content">
         <h2>Wish List</h2>
+        <div class="searchBar">
+            {{form_start(filterForm) }}
+            {{ form_widget(filterForm) }}
+            <button>Search</button>
+            {{ form_end(filterForm) }}
+        </div>
         <section>
-            {% for wish in wishList %}
+            {% if filterForm.vars.submitted %}
+            {% for wish in wishes %}
                 <article>
                     <a href="{{ path('wish_list_details',{'id':wish.id}) }}">
                         <p>{{ loop.index }} : {{ wish.title }} ({{ wish.category.name}})</p>
                     </a>
                 </article>
             {% endfor %}
+            {% else %}
+                {% for wish in wishList %}
+                    <article>
+                        <a href="{{ path('wish_list_details',{'id':wish.id}) }}">
+                            <p>{{ loop.index }} : {{ wish.title }} ({{ wish.category.name}})</p>
+                        </a>
+                    </article>
+                {% endfor %}
+            {% endif %}
         </section>
     </div>
 
