@@ -31,20 +31,5 @@ class WishRepository extends ServiceEntityRepository
                 ->getQuery()
                 ->getResult();
         }
-    public function findByDateASC()
-    {
-        return $this->createQueryBuilder('w')
-            ->addSelect('w')
-            ->orderBy('w.dateCreated', 'ASC')
-            ->getQuery()
-            ;
-    }
-    public function findByDateDESC()
-    {
-        return $this->createQueryBuilder('w')
-            ->addSelect('w')
-            ->orderBy('w.dateCreated', 'DESC')
-            ->getQuery()
-            ;
-    }
+
 }

@@ -8,15 +8,20 @@
         {{ form_start(eventForm) }}
         {{ form_widget(eventForm) }}
         <br>
-        <button >Find Events!</button>
+        <button>Find Events!</button>
         {{ form_end(eventForm) }}
         <br>
+        <h3>Events in {{ eventForm.city.vars.value }}</h3>
 
         <div class="event"></div>
         {% for event in data.records %}
             <div class="infos">
                 <div class="infos-title">
+                    {% if event.fields.title_fr is defined %}
                     <h4>{{ event.fields.title_fr }}</h4>
+                    {% else %}
+                        <h4>{{ event.fields.originagenda_title }}</h4>
+                        {% endif %}
                     <p>dates of the event : {{ event.fields.daterange_fr }}</p>
                     <p>Location: {{ event.fields.location_name }}</p>
                     <p>Address: {{ event.fields.location_address }}</p>
